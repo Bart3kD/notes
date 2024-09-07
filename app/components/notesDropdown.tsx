@@ -18,14 +18,16 @@ const NotesDropdown: FC<Props> = ({ titles }) => {
 
   const handleOpenNote = () => {
     if (selectedNoteId) {
-      router.push(`/note/${selectedNoteId}`); // Navigate to /note/[id]
+      router.push(`/notes/${selectedNoteId}`); // Navigate to /note/[id]
     }
   };
 
   return (
     <div>
       <select onChange={handleSelectChange} defaultValue="">
-        <option value="" disabled>Select a note</option>
+        <option value="" disabled>
+          Select a note
+        </option>
         {titles.map((title) => (
           <option key={title.id} value={title.id}>
             {title.title}
