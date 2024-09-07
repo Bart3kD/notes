@@ -1,85 +1,71 @@
 "use client";
 import { ChangeEvent, FC, useState } from "react";
-import { todoType } from "@/types/todoType";
+import { todoType } from "../../back/types/todoType";
 
 interface Props {
   todo: todoType;
+  changeTodoTitle: (id: number, title: string) => void,
   changeTodoText: (id: number, text: string) => void;
-  toggleIsTodoDone: (id: number, done: boolean) => void;
   deleteTodoItem: (id: number) => void;
 }
 
 const Todo: FC<Props> = ({
   todo,
+  changeTodoTitle,
   changeTodoText,
-  toggleIsTodoDone,
   deleteTodoItem,
 }) => {
-  // State for handling editing mode
   const [editing, setEditing] = useState(false);
 
-  // State for handling text input
+  const [title, setTitle] = useState(todo.title);
+
   const [text, setText] = useState(todo.text);
 
-  // State for handling "done" status
-  const [isDone, setIsDone] = useState(todo.done);
+  const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);   
+  };
 
-  // Event handler for text input change
   const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
   };
 
-  // Event handler for toggling "done" status
-  const handleIsDone = async () => {
-    toggleIsTodoDone(todo.id, !isDone);
-    setIsDone((prev) => !prev);
-  };
-
-  // Event handler for initiating the edit mode
   const handleEdit = () => {
     setEditing(true);
   };
 
-  // Event handler for saving the edited text
   const handleSave = async () => {
+    changeTodoTitle(todo.id, title)
     changeTodoText(todo.id, text);
     setEditing(false);
   };
 
-  // Event handler for canceling the edit mode
   const handleCancel = () => {
     setEditing(false);
     setText(todo.text);
   };
 
-  // Event handler for deleting a todo item
   const handleDelete = () => {
     if (confirm("Are you sure you want to delete this todo?")) {
       deleteTodoItem(todo.id);
     }
   };
 
-  // Rendering the Todo component
   return (
     <div className="flex items-center gap-2 p-4 border-gray-200 border-solid border rounded-lg">
-      {/* Checkbox for marking the todo as done */}
       <input
-        type="checkbox"
-        className="text-blue-200 rounded-sm h-4 w-4"
-        checked={isDone}
-        onChange={handleIsDone}
+        type="text"
+        value={title}
+        onChange={handleTitleChange}
+        readOnly={!editing}
+        className={`outline-none read-only:border-transparent focus:border border-gray-200 rounded px-2 py-1 w-full`}
       />
-      {/* Input field for todo text */}
       <input
         type="text"
         value={text}
         onChange={handleTextChange}
         readOnly={!editing}
-        className={`${
-          todo.done ? "line-through" : ""
-        } outline-none read-only:border-transparent focus:border border-gray-200 rounded px-2 py-1 w-full`}
+        className={`outline-none read-only:border-transparent focus:border border-gray-200 rounded px-2 py-1 w-full`}
       />
-      {/* Action buttons for editing, saving, canceling, and deleting */}
       <div className="flex gap-1 ml-auto">
         {editing ? (
           <button

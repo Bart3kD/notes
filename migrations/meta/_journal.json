@@ -5,8 +5,22 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1725649792172,
-      "tag": "0000_violet_moon_knight",
+      "when": 1725650365034,
+      "tag": "0000_adorable_dark_beast",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1725652492463,
+      "tag": "0001_little_fenris",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1725700897702,
+      "tag": "0002_lonely_gorilla_man",
       "breakpoints": true
     }
   ]

@@ -1,6 +1,6 @@
 {
-  "id": "2c9eba68-18f1-4eb4-bec1-12a4dde4aaf9",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "cd402f61-0778-48e3-9516-8b98b2d9863e",
+  "prevId": "2c9eba68-18f1-4eb4-bec1-12a4dde4aaf9",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -25,13 +25,6 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true
-        },
-        "done": {
-          "name": "done",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": true,
-          "default": false
         }
       },
       "indexes": {},
