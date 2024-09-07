@@ -72,12 +72,13 @@ export const getTitles = async () => {
       id: todo.id,
       title: todo.title,
     })
-    .from(todo);
+    .from(todo)
+    .limit(1000);
 
   return data;
 };
 
-export const getNote = async (id: number) => {
+export const getNote = async (id: number)=> {
   const data = await db
     .select({
       id: todo.id,
@@ -87,5 +88,5 @@ export const getNote = async (id: number) => {
     .from(todo)
     .where(eq(todo.id, id));
 
-  return data[0];
+  return data.length > 0 ? data[0] : null;
 };
