@@ -1,8 +1,9 @@
 "use server";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { db } from "@/back/db/drizzle";
 import { todo } from "@/back/db/schema";
+import { todoType } from "../types/todoType";
 
 export const getData = async () => {
   const data = await db.select().from(todo);
@@ -66,17 +67,12 @@ export const editText = async (id: number, text: string) => {
   revalidatePath("/");
 };
 
-export const getTitles = async () => {
-  const data = await db
-    .select({
-      id: todo.id,
-      title: todo.title,
-    })
-    .from(todo)
-    .limit(1000);
-
-  return data;
+export const getTitles = async (): Promise<Pick<todoType, "id" | "title">[]> => {
+  const data = await db.execute(sql`select id, title from todo`);
+  return data.rows as Pick<todoType, "id" | "title">[];
 };
+
+
 
 export const getNote = async (id: number)=> {
   const data = await db
