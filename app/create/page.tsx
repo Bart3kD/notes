@@ -8,7 +8,7 @@ import {
 
 import HomeButton from "../components/homeButton";
 
-const page = () => {
+const Page = () => {
     const router = useRouter();
 
     const [title, setTitle] = useState("");
@@ -64,4 +64,4 @@ const page = () => {
     );
 }
 
-export default page;
+export default Page;
