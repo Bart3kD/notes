@@ -28,7 +28,7 @@ const CreateButton: FC = () => {
             clipRule="evenodd"
           />
         </svg>
-        <span className="sr-only">Home</span>
+        <span className="sr-only">Create</span>
       </button>
     </div>
   );

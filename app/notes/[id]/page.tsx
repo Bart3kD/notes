@@ -2,7 +2,11 @@
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { getNote, deleteTodo, editTitle, editText } from "@/back/actions/todoAction";
+import SaveButton from "@/app/components/saveButton";
+import CancelButton from "@/app/components/cancelButton";
+import EditButton from "@/app/components/editButton";
 import HomeButton from "@/app/components/homeButton";
+import DeleteButton from "@/app/components/deleteButton";
 
 type TNote = {
   id: number;
@@ -98,49 +102,29 @@ export default function NotePage() {
     <div className="flex flex-col w-2/3 h-screen bg-bgColor mx-auto py-20">
       <HomeButton />
       {!editing ? (
-        <>
-          <h1 className="text-5xl pb-5">{title}</h1>
-          <p className="text-xl pl-1">{text}</p>
-          <button 
-            onClick={() => setEditing(true)} 
-            className="mt-5 bg-blue-500 text-white py-2 px-4 rounded"
-          >
-            Edit Note
-          </button>
-        </>
-      ) : (
+          <>
+            <h1 className="text-5xl pb-5">{title}</h1>
+            <p className="text-xl pl-1 mt-6 whitespace-pre-wrap">{text}</p>
+            <EditButton onClick={() => {setEditing(true)}}/>
+          </>
+        ) : (
         <>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="text-5xl pb-5"
+            className="text-5xl pb-5 bg-bgColor"
           />
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="text-xl pl-1"
+            className="text-xl pl-1 h-full mt-5 bg-bgColor"
           />
-          <button 
-            onClick={handleSave} 
-            className="mt-5 bg-green-500 text-white py-2 px-4 rounded"
-          >
-            Save
-          </button>
-          <button 
-            onClick={handleCancel} 
-            className="mt-5 bg-gray-500 text-white py-2 px-4 rounded"
-          >
-            Cancel
-          </button>
+          <SaveButton onClick={handleSave}/>
+          <CancelButton onClick={handleCancel}/>
         </>
       )}
-      <button 
-        onClick={handleDelete} 
-        className="mt-10 bg-red-500 text-white py-2 px-4 rounded"
-      >
-        Delete Note
-      </button>
+      <DeleteButton onClick={handleDelete}/>
     </div>
   );
 }
