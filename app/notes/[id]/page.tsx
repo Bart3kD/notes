@@ -85,6 +85,8 @@ export default function NotePage() {
     if (note) {
       await changeTodoTitle(note.id, title);
       await changeTodoText(note.id, text);
+      setOriginalTitle(title);
+      setOriginalText(text);
       setEditing(false);
     }
   };
