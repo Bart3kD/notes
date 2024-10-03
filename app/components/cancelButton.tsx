@@ -8,7 +8,7 @@ interface CancelButtonProps {
 
 const CancelButton: FC<CancelButtonProps> = ({ onClick }) => {
   return (
-    <div className="absolute top-36 right-80">
+    <div className="absolute top-5 right-20">
       <button
         onClick={onClick}
         className="flex items-center justify-center p-3 rounded-md bg-bgColor text-white hover:bg-gray-700 transition duration-300"

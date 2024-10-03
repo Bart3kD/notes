@@ -8,7 +8,7 @@ interface DeleteButtonProps {
 
 const DeleteButton: FC<DeleteButtonProps> = ({ onClick }) => {
   return (
-    <div className="absolute top-20 right-64">
+    <div className="absolute top-5 right-5">
       <button
         onClick={onClick}
         className="flex items-center justify-center p-3 rounded-md bg-bgColor text-white hover:bg-gray-700 transition duration-300"
