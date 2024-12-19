@@ -1,3 +1,5 @@
+This is a simple app for creating and storing notes.
+
 ## Starting up the application
 
 First, run the development server:
